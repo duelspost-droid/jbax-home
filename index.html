@@ -82,6 +82,19 @@
   .service .sp{flex:1;min-width:24px}
   .service .btn-primary{background:#fff;color:var(--navy)}
   .services{display:flex;flex-direction:column;gap:18px}
+  .service{transition:transform .18s ease, box-shadow .18s ease}
+  a.service{cursor:pointer}
+  a.service:hover{transform:translateY(-4px);box-shadow:0 26px 64px rgba(6,26,64,.22)}
+  a.service .btn-primary{transition:transform .18s ease}
+  a.service:hover .btn-primary{transform:translateX(4px)}
+  .service.soon{background:#fff;color:var(--navy);border:1.5px dashed #c7d3e8;box-shadow:none}
+  .service.soon p{color:var(--muted)}
+  .soon-pill{display:inline-block;font-size:.66rem;font-weight:800;letter-spacing:.04em;color:var(--blue);background:#eaf1ff;border:1px solid #d7e4ff;border-radius:999px;padding:3px 9px;margin-left:8px;vertical-align:middle}
+  .btn-soon{background:#eef2f8;color:var(--muted);border:1px solid var(--line);cursor:default}
+  /* 스크롤 등장 애니메이션 */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.2,.7,.2,1), transform .6s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){ .reveal{opacity:1 !important;transform:none !important;transition:none} }
   /* ── 푸터 ── */
   footer{padding:48px 0;text-align:center;color:var(--muted);font-size:.85rem}
   footer .brand{font-size:1.05rem;margin-bottom:8px}
@@ -162,27 +175,43 @@
 
 <section class="block" id="service">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <div class="tag">Services</div>
       <h2>JBAX 서비스</h2>
-      <p>JBAX가 만든 사내 AI 서비스를 만나보세요.</p>
+      <p>JBAX가 만든 사내 AI 서비스를 만나보세요. 새로운 서비스가 계속 추가됩니다.</p>
     </div>
     <div class="services">
-      <div class="service">
+      <a class="service reveal" style="transition-delay:0s" href="https://lunch.jbax.co.kr" target="_blank" rel="noopener">
         <div>
           <h3>AI 맛집 트래커</h3>
           <p>위치별 맞춤 맛집 추천과 리뷰를 매일 자동으로. 점심 고민을 줄이는 사내 AI 서비스.</p>
         </div>
         <span class="sp"></span>
-        <a class="btn btn-primary" href="https://lunch.jbax.co.kr" target="_blank" rel="noopener">바로가기 ↗</a>
-      </div>
-      <div class="service">
+        <span class="btn btn-primary">바로가기 ↗</span>
+      </a>
+      <a class="service reveal" style="transition-delay:.08s" href="https://secuday.jbax.co.kr" target="_blank" rel="noopener">
         <div>
           <h3>secuday · 정보보호의 날</h3>
           <p>매월 보안 인식 자료(포스터·뉴스레터·임직원 수칙)를 AI로 자동 생성·배포하고 PDF로 받는 사내 서비스.</p>
         </div>
         <span class="sp"></span>
-        <a class="btn btn-primary" href="https://secuday.jbax.co.kr" target="_blank" rel="noopener">바로가기 ↗</a>
+        <span class="btn btn-primary">바로가기 ↗</span>
+      </a>
+      <div class="service soon reveal" style="transition-delay:.16s" aria-disabled="true">
+        <div>
+          <h3>AI 업무 어시스턴트 <span class="soon-pill">준비 중</span></h3>
+          <p>반복 업무를 줄여주는 사내 AI 어시스턴트를 준비하고 있습니다.</p>
+        </div>
+        <span class="sp"></span>
+        <span class="btn btn-soon">Coming soon</span>
+      </div>
+      <div class="service soon reveal" style="transition-delay:.24s" aria-disabled="true">
+        <div>
+          <h3>AI 고객 인사이트 <span class="soon-pill">준비 중</span></h3>
+          <p>데이터로 고객을 더 깊이 이해하는 새로운 서비스가 곧 찾아옵니다.</p>
+        </div>
+        <span class="sp"></span>
+        <span class="btn btn-soon">Coming soon</span>
       </div>
     </div>
   </div>
@@ -196,6 +225,16 @@
   </div>
 </footer>
 
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+<script>
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  (function(){
+    var els=[].slice.call(document.querySelectorAll('.reveal'));
+    if(!('IntersectionObserver' in window)){ els.forEach(function(e){e.classList.add('in')}); return; }
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); } });
+    },{threshold:.15, rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
 </body>
 </html>

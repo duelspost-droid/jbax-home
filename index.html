@@ -81,6 +81,7 @@
   .service p{color:#c5d6f5;margin-top:8px;max-width:520px}
   .service .sp{flex:1;min-width:24px}
   .service .btn-primary{background:#fff;color:var(--navy)}
+  .services{display:flex;flex-direction:column;gap:18px}
   /* ── 푸터 ── */
   footer{padding:48px 0;text-align:center;color:var(--muted);font-size:.85rem}
   footer .brand{font-size:1.05rem;margin-bottom:8px}
@@ -161,13 +162,28 @@
 
 <section class="block" id="service">
   <div class="wrap">
-    <div class="service">
-      <div>
-        <h3>AI 맛집 트래커</h3>
-        <p>JBAX가 만든 사내 AI 서비스. 위치별 맞춤 맛집 추천과 리뷰를 매일 자동으로.</p>
+    <div class="sec-head">
+      <div class="tag">Services</div>
+      <h2>JBAX 서비스</h2>
+      <p>JBAX가 만든 사내 AI 서비스를 만나보세요.</p>
+    </div>
+    <div class="services">
+      <div class="service">
+        <div>
+          <h3>AI 맛집 트래커</h3>
+          <p>위치별 맞춤 맛집 추천과 리뷰를 매일 자동으로. 점심 고민을 줄이는 사내 AI 서비스.</p>
+        </div>
+        <span class="sp"></span>
+        <a class="btn btn-primary" href="https://lunch.jbax.co.kr" target="_blank" rel="noopener">바로가기 ↗</a>
       </div>
-      <span class="sp"></span>
-      <a class="btn btn-primary" href="https://lunch.jbax.co.kr" target="_blank" rel="noopener">바로가기 ↗</a>
+      <div class="service">
+        <div>
+          <h3>secuday · 정보보호의 날</h3>
+          <p>매월 보안 인식 자료(포스터·뉴스레터·임직원 수칙)를 AI로 자동 생성·배포하고 PDF로 받는 사내 서비스.</p>
+        </div>
+        <span class="sp"></span>
+        <a class="btn btn-primary" href="https://secuday.jbax.co.kr" target="_blank" rel="noopener">바로가기 ↗</a>
+      </div>
     </div>
   </div>
 </section>
